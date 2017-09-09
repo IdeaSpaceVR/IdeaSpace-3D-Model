@@ -1,3 +1,7 @@
+## 1.1
+
+- Removed aframe-mouse-cursor-component in favor for rayOrigin: mouse
+
 ## 1.0
 
 - Initial version
