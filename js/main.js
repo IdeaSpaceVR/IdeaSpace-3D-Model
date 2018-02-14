@@ -12,8 +12,8 @@ if (scene.hasLoaded) {
 function run() {
 
     // ORBIT CAMERA DRAG START / END EVENT LISTENERS
-    document.querySelector('#camera').addEventListener('start-drag-orbit-controls', handleDragStart );
-    document.querySelector('#camera').addEventListener('end-drag-orbit-controls', handleDragEnd );
+//    document.querySelector('#camera').addEventListener('start-drag-orbit-controls', handleDragStart );
+//    document.querySelector('#camera').addEventListener('end-drag-orbit-controls', handleDragEnd );
 }
 
 function handleDragStart(event) {

@@ -1,3 +1,7 @@
+## 1.2
+
+- Fixed teleportation issues with Oculus Rift touch controllers
+
 ## 1.1
 
 - Deprecated aframe-mouse-cursor-component

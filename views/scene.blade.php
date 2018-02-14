@@ -5,7 +5,7 @@
 @section('scene')
 
     <a-scene 
-        isvr-model-center="{{ ((isset($content['model']) && isset($content['model'][0]['camera-offset']))?$content['model'][0]['camera-offset']['#value']:0) }}" 
+				isvr-model-center="{{ ((isset($content['model']) && isset($content['model'][0]['camera-offset']))?$content['model'][0]['camera-offset']['#value']:0) }}"
         @if (isset($content['model'])) 
             isvr-vr-mode="camera_distance_vr: {{ $content['model'][0]['camera-offset-vr']['#value'] }}" 
         @endif>
@@ -13,32 +13,46 @@
         @include('theme::assets')
 
         @if (isset($content['model']))
-            <a-entity id="camera-wrapper" position="0 0 0"> 
-                <a-entity
-                    id="camera" 
-                    camera="fov: 80; userHeight: 1.6"
-                    position="0 0 0"
+
+						<a-circle 
+								id="floor" 
+								visible="false" 
+								isvr-teleportation="camera_distance_vr: {{ $content['model'][0]['camera-offset-vr']['#value'] }}" 
+								src="url({{ url($theme_dir . '/images/grid.png') }})" 
+								repeat="100 100" 
+								radius="100" 
+								position="0 0 0" 
+								rotation="-90 0 0">
+						</a-circle>
+
+            <a-ring id="teleport-indicator" color="#FFFFFF" radius-inner="0.18" radius-outer="0.2" rotation="-90 0 0" visible="false"></a-ring>
+
+
+						<a-entity id="camera-wrapper">
+      					<a-entity 
+										id="camera" 
+										camera="fov: 80; userHeight: 1.6" 
+										look-controls
                     cursor="rayOrigin: mouse"
                     orbit-controls="
                         autoRotate: false;
                         target: #model;
-                        distance: 0; 
+                        distance: 0;
                         enableDamping: true;
-                        enablePan: false; 
-                        enableZoom: false; 
+                        enablePan: false;
+                        enableZoom: false;
                         dampingFactor: 0.125;
                         rotateSpeed: 0.25;
                         minDistance: 1;
-                        maxDistance: 2000">
-                </a-entity>
-            </a-entity>
+                  			maxDistance: 2000">
+								</a-entity>
+								<a-entity laser-controls="hand: left" raycaster="near: 0.5" line="color: #FFFFFF" class="laser-controls"></a-entity>
+        				<a-entity laser-controls="hand: right" raycaster="near: 0.5" line="color: #FFFFFF" class="laser-controls"></a-entity>
+						</a-entity>
 
-            <a-ring id="teleport-indicator" color="#FFFFFF" radius-inner="0.48" radius-outer="0.5" rotation="-90 0 0" visible="false"></a-ring>
 
-            <a-entity id="laser-controls" position="0 0 {{ $content['model'][0]['camera-offset-vr']['#value'] }}">
-                <a-entity raycaster="near: 0.5" laser-controls="hand: left" line="color: #FFFFFF" class="laser-controls"></a-entity>
-                <a-entity raycaster="near: 0.5" laser-controls="hand: right" line="color: #FFFFFF" class="laser-controls"></a-entity>
-            </a-entity>
+<!--a-entity log geometry="primitive: plane" material="color: #111" text="color: lightgreen" position="0 1 -1.5"></a-entity//-->
+
 
             <?php 
             if (isset($content['model'][0]['scene-background-color'])) {
@@ -53,16 +67,6 @@
             ?>
 
             <a-gradient-sky material="shader: gradient; bottomColor: {{ $topColor }}; topColor: 0 0 0;"></a-gradient-sky>
-
-            <a-entity 
-                id="floor"
-                isvr-teleportation="camera_distance_vr: {{ $content['model'][0]['camera-offset-vr']['#value'] }}"
-                visible="false"
-                geometry="primitive: circle; radius: 100" 
-                material="src: url({{ url($theme_dir . '/images/grid.png') }}); repeat: 100 100"  
-                rotation="-90 0 0"
-                position="0 0 0">
-            </a-entity>
 
 
             @php
