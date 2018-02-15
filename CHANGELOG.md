@@ -1,6 +1,8 @@
 ## 1.2
 
-- Fixed teleportation issues with Oculus Rift touch controllers
+- Bug fix: Oculus Rift touch controllers work now in VR
+- Allow formatted text in hotspot annotations
+
 
 ## 1.1
 

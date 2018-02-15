@@ -204,13 +204,18 @@
                                 position="0 0 0.01" 
                                 material="color: {{ $annotation['#content']['background-color']['#value'] }}"> 
                                 <!-- text //-->
-                                <a-plane width="0.77" height="0.2" position="0 0 0.02" color="{{ $annotation['#content']['background-color']['#value'] }}">
+                                <a-plane 
+																		material="shader: html; target: #annotation-text-texture-content-id-{{ $annotation['#content-id'] }}; transparent: false; ratio: width"
+																		width="0.77" 
+																		height="0.2" 
+																		position="0 0 0.02">
+                                <!--a-plane width="0.77" height="0.2" position="0 0 0.02" color="{{ $annotation['#content']['background-color']['#value'] }}">
                                     <a-text 
                                         value="{{ (isset($annotation['#content'])?$annotation['#content']['text']['#value']:'') }}" 
                                         color="{{ $annotation['#content']['text-color']['#value'] }}" 
                                         anchor="center" 
                                         width="0.77">
-                                    </a-text>
+                                    </a-text//-->
                                 </a-plane>
                             </a-entity>
                         </a-entity>
@@ -227,5 +232,20 @@
         @endif
 
     </a-scene>
+
+
+		<div class="cover">
+    </div>
+
+		@if (isset($content['model'][0]['attach-annotations']))
+
+				@foreach ($content['model'][0]['attach-annotations']['#positions'] as $annotation)
+						<div id="annotation-text-texture-content-id-{{ $annotation['#content-id'] }}" class="annotation-text-texture" style="background-color:{{ $annotation['#content']['background-color']['#value'] }}; color:{{ $annotation['#content']['text-color']['#value'] }}">
+            {!! (isset($annotation['#content'])?$annotation['#content']['text']['#value']:'') !!}
+        		</div>
+				@endforeach
+
+		@endif
+
 
 @endsection
