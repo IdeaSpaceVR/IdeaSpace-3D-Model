@@ -17,7 +17,7 @@
 						<a-circle 
 								id="floor" 
 								visible="false" 
-								isvr-teleportation="camera_distance_vr: {{ $content['model'][0]['camera-offset-vr']['#value'] }}" 
+								isvr-teleportation 
 								src="url({{ url($theme_dir . '/images/grid.png') }})" 
 								repeat="100 100" 
 								radius="100" 
@@ -26,32 +26,6 @@
 						</a-circle>
 
             <a-ring id="teleport-indicator" color="#FFFFFF" radius-inner="0.18" radius-outer="0.2" rotation="-90 0 0" visible="false"></a-ring>
-
-
-						<a-entity id="camera-wrapper">
-      					<a-entity 
-										id="camera" 
-										camera="fov: 80; userHeight: 1.6" 
-										look-controls
-                    cursor="rayOrigin: mouse"
-                    orbit-controls="
-                        autoRotate: false;
-                        target: #model;
-                        distance: 0;
-                        enableDamping: true;
-                        enablePan: false;
-                        enableZoom: false;
-                        dampingFactor: 0.125;
-                        rotateSpeed: 0.25;
-                        minDistance: 1;
-                  			maxDistance: 2000">
-								</a-entity>
-								<a-entity laser-controls="hand: left" raycaster="near: 0.5" line="color: #FFFFFF" class="laser-controls"></a-entity>
-        				<a-entity laser-controls="hand: right" raycaster="near: 0.5" line="color: #FFFFFF" class="laser-controls"></a-entity>
-						</a-entity>
-
-
-<!--a-entity log geometry="primitive: plane" material="color: #111" text="color: lightgreen" position="0 1 -1.5"></a-entity//-->
 
 
             <?php 
@@ -209,13 +183,6 @@
 																		width="0.77" 
 																		height="0.2" 
 																		position="0 0 0.02">
-                                <!--a-plane width="0.77" height="0.2" position="0 0 0.02" color="{{ $annotation['#content']['background-color']['#value'] }}">
-                                    <a-text 
-                                        value="{{ (isset($annotation['#content'])?$annotation['#content']['text']['#value']:'') }}" 
-                                        color="{{ $annotation['#content']['text-color']['#value'] }}" 
-                                        anchor="center" 
-                                        width="0.77">
-                                    </a-text//-->
                                 </a-plane>
                             </a-entity>
                         </a-entity>
@@ -228,6 +195,31 @@
             @endif
 
             </a-entity><!-- model-wrapper //-->
+
+
+
+
+						<a-entity id="camera-wrapper">
+      					<a-entity 
+										id="camera" 
+										camera="fov: 80; userHeight: 1.6" 
+										look-controls
+                    cursor="rayOrigin: mouse"
+                    orbit-controls="
+                        autoRotate: false;
+                        target: #model;
+                        distance: 0;
+                        enableDamping: true;
+                        enablePan: false;
+                        enableZoom: false;
+                        dampingFactor: 0.125;
+                        rotateSpeed: 0.25;
+                        minDistance: 1;
+                  			maxDistance: 2000">
+								</a-entity>
+								<a-entity laser-controls="hand: left" raycaster="near: 0.5" line="color: #FFFFFF" class="laser-controls"></a-entity>
+        				<a-entity laser-controls="hand: right" raycaster="near: 0.5" line="color: #FFFFFF" class="laser-controls"></a-entity>
+						</a-entity>
 
         @endif
 
