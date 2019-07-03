@@ -5,7 +5,8 @@
 @section('scene')
 
     <a-scene vr-mode 
-				isvr-model-center="{{ ((isset($content['model']) && isset($content['model'][0]['camera-offset']))?$content['model'][0]['camera-offset']['#value']:0) }}"
+				isvr-model-center="offset: {{ ((isset($content['model']) && isset($content['model'][0]['camera-offset']))?$content['model'][0]['camera-offset']['#value']:0) }}"
+				renderer="antialias: true" background="color: #000000" loading-screen="dotsColor: #000000; backgroundColor: #000000"
         @if (isset($content['model'])) 
             isvr-vr-mode="camera_distance_vr: {{ $content['model'][0]['camera-offset-vr']['#value'] }}" 
         @endif>
@@ -59,8 +60,8 @@
                     rotation="{{ (isset($content['model'][0]['rotation-x'])?$content['model'][0]['rotation-x']['#value']:'0') }} {{ (isset($content['model'][0]['rotation-y'])?$content['model'][0]['rotation-y']['#value']:'0') }} {{ (isset($content['model'][0]['rotation-z'])?$content['model'][0]['rotation-z']['#value']:'0') }}"
                     position="0 0 -100" 
                     visible="false" 
+                    animation="property: position; to: 0 0 0; dur: 2000; easing: easeOutQuad; startEvents: isvr-model-intro" 
                     gltf-model="#model-gltf">
-                    <a-animation id="model-animation" attribute="position" begin="isvr-model-intro" to="0 0 0" dur="2000" easing="ease-out"></a-animation>
                 </a-entity>
 
             @elseif ($filetype == \App\Model3D::FILE_EXTENSION_GLB)
@@ -70,19 +71,8 @@
                     rotation="{{ (isset($content['model'][0]['rotation-x'])?$content['model'][0]['rotation-x']['#value']:'0') }} {{ (isset($content['model'][0]['rotation-y'])?$content['model'][0]['rotation-y']['#value']:'0') }} {{ (isset($content['model'][0]['rotation-z'])?$content['model'][0]['rotation-z']['#value']:'0') }}"
                     position="0 0 -100" 
                     visible="false" 
+                    animation="property: position; to: 0 0 0; dur: 2000; easing: easeOutQuad; startEvents: isvr-model-intro" 
                     gltf-model="#model-glb">
-                    <a-animation id="model-animation" attribute="position" begin="isvr-model-intro" to="0 0 0" dur="2000" easing="ease-out"></a-animation>
-                </a-entity>
-
-            @elseif ($filetype == \App\Model3D::FILE_EXTENSION_DAE)
-
-                <a-entity 
-                    id="model" 
-                    rotation="{{ (isset($content['model'][0]['rotation-x'])?$content['model'][0]['rotation-x']['#value']:'0') }} {{ (isset($content['model'][0]['rotation-y'])?$content['model'][0]['rotation-y']['#value']:'0') }} {{ (isset($content['model'][0]['rotation-z'])?$content['model'][0]['rotation-z']['#value']:'0') }}"
-                    position="0 0 -100" 
-                    visible="false" 
-                    collada-model="#model-dae">
-                    <a-animation id="model-animation" attribute="position" begin="isvr-model-intro" to="0 0 0" dur="2000" easing="ease-out"></a-animation>
                 </a-entity>
 
             @elseif ($filetype == \App\Model3D::FILE_EXTENSION_OBJ || $filetype == \App\Model3D::FILE_EXTENSION_MTL)
@@ -92,8 +82,8 @@
                     rotation="{{ (isset($content['model'][0]['rotation-x'])?$content['model'][0]['rotation-x']['#value']:'0') }} {{ (isset($content['model'][0]['rotation-y'])?$content['model'][0]['rotation-y']['#value']:'0') }} {{ (isset($content['model'][0]['rotation-z'])?$content['model'][0]['rotation-z']['#value']:'0') }}"
                     position="0 0 -100" 
                     visible="false" 
+                    animation="property: position; to: 0 0 0; dur: 2000; easing: easeOutQuad; startEvents: isvr-model-intro"
                     obj-model="obj: #model-obj; mtl: #model-mtl">
-                    <a-animation id="model-animation" attribute="position" begin="isvr-model-intro" to="0 0 0" dur="2000" easing="ease-out"></a-animation>
                 </a-entity>
 
             @elseif ($filetype == \App\Model3D::FILE_EXTENSION_PLY)
@@ -102,11 +92,10 @@
                     id="model" 
                     rotation="{{ (isset($content['model'][0]['rotation-x'])?$content['model'][0]['rotation-x']['#value'] - 90:'-90') }} {{ (isset($content['model'][0]['rotation-y'])?$content['model'][0]['rotation-y']['#value']:'0') }} {{ (isset($content['model'][0]['rotation-z'])?$content['model'][0]['rotation-z']['#value']:'0') }}"
                     class="ply-model" 
-                    /*rotation="-90 0 0"*/ 
                     position="0 0 -100" 
                     visible="false" 
+                    animation="property: position; to: 0 0 0; dur: 2000; easing: easeOutQuad; startEvents: isvr-model-intro" 
                     ply-model="src: #plyModel">
-                    <a-animation id="model-animation" attribute="position" begin="isvr-model-intro" to="0 0 0" dur="2000" easing="ease-out"></a-animation>
                 </a-entity>        
 
             @endif
@@ -168,18 +157,8 @@
 										id="camera" 
 										camera
 										look-controls
-                    cursor="rayOrigin: mouse"
-                    orbit-controls="
-                        autoRotate: false;
-                        target: #model;
-                        distance: 0;
-                        enableDamping: true;
-                        enablePan: false;
-                        enableZoom: true;
-                        dampingFactor: 0.125;
-                        rotateSpeed: 0.25;
-                        minDistance: 1;
-                  			maxDistance: 2000">
+										raycaster="objects: .collidable; far:5000"
+                    cursor="rayOrigin: mouse">
 								</a-entity>
 						</a-entity>
 
