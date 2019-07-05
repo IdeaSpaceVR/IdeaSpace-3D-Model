@@ -101,6 +101,9 @@
             @endif
 
 
+						<a-entity id="look-at"></a-entity>
+
+
             @if (isset($content['model'][0]['attach-annotations']))
 
                 <a-entity 
@@ -113,7 +116,7 @@
                     @endphp
 
                     <a-entity 
-                        look-at="#camera"
+												look-at="#look-at"
                         scale="{{ (isset($content['model'][0]['hotspot-scale'])?$content['model'][0]['hotspot-scale']['#value']:'1 1 1') }}"
                         position="{{ $annotation['#position']['#x'] }} {{ $annotation['#position']['#y'] }} {{ $annotation['#position']['#z'] }}" 
                         rotation="{{ $annotation['#rotation']['#x'] }} {{ $annotation['#rotation']['#y'] }} {{ $annotation['#rotation']['#z'] }}">

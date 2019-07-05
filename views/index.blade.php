@@ -31,7 +31,7 @@
 		<script src="{{ url($theme_dir . '/js/aframe-html-shader-component/aframe-html-shader.min.js') }}"></script>
     <script src="{{ url($theme_dir . '/js/aframe-extras/aframe-extras.loaders.min.js') }}"></script>
     <script src="{{ url($theme_dir . '/js/aframe-orbit-controls/aframe-orbit-controls.min.js') }}"></script>
-    <script src="{{ url($theme_dir . '/js/kframe/aframe-look-at-component.min.js') }}"></script>
+    <script src="{{ url($theme_dir . '/js/superframe/aframe-look-at-component.min.js') }}"></script>
     <script src="{{ url($theme_dir . '/js/isvr-vr-mode.js') }}"></script>
     <script src="{{ url($theme_dir . '/js/isvr-model-center.js') }}"></script>
 </head>

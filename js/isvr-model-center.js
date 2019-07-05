@@ -8,15 +8,18 @@ AFRAME.registerComponent('isvr-model-center', {
 
     init: function() {
 
+				var self = this;
+
         var offset = this.data.offset;
 
         var mdl = document.querySelector('#model');
+
+        var camera = document.querySelector('a-entity[camera]'); 
 
         if (mdl) {
 
             mdl.addEventListener('model-loaded', function() {
 
-                var camera = document.querySelector('a-entity[camera]'); 
                 var model = document.querySelector('#model');
 
 						 		var camera_wrapper = document.querySelector('#camera-wrapper');
@@ -55,6 +58,12 @@ AFRAME.registerComponent('isvr-model-center', {
         }
 
     },
+
+
+		tick: function () {
+
+    		document.querySelector('#look-at').object3D.position.copy(document.querySelector('a-entity[camera]').getObject3D('camera').position);
+  	}
 
 });
 
