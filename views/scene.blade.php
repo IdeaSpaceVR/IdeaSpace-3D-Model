@@ -55,12 +55,15 @@
 
             @if ($filetype == \App\Model3D::FILE_EXTENSION_GLTF)
 
+<!-- MODIFIED 5. Mar 2020: added support for animated models (gltf only) //-->
+
                 <a-entity 
                     id="model" 
                     rotation="{{ (isset($content['model'][0]['rotation-x'])?$content['model'][0]['rotation-x']['#value']:'0') }} {{ (isset($content['model'][0]['rotation-y'])?$content['model'][0]['rotation-y']['#value']:'0') }} {{ (isset($content['model'][0]['rotation-z'])?$content['model'][0]['rotation-z']['#value']:'0') }}"
                     position="0 0 -100" 
                     visible="false" 
-                    animation="property: position; to: 0 0 0; dur: 2000; easing: easeOutQuad; startEvents: isvr-model-intro" 
+                    animation="property: position; to: 0 0 0; dur: 2000; easing: easeOutQuad; startEvents: isvr-model-intro"
+					animation-mixer="clip:*; loop:repeat"
                     gltf-model="#model-gltf">
                 </a-entity>
 

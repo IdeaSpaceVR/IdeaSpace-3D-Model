@@ -26,8 +26,10 @@
     <script src="{{ url($theme_dir . '/js/aframe/aframe-v1.0.3.min.js') }}"></script>
     <script src="{{ url($theme_dir . '/js/aframe-teleport-controls/aframe-teleport-controls.min.js') }}"></script>
     <script src="{{ url($theme_dir . '/js/gradientsky.min.js') }}"></script>
-		<script src="{{ url($theme_dir . '/js/aframe-html-shader-component/aframe-html-shader.min.js') }}"></script>
+	<script src="{{ url($theme_dir . '/js/aframe-html-shader-component/aframe-html-shader.min.js') }}"></script>
     <script src="{{ url($theme_dir . '/js/aframe-extras/aframe-extras.loaders.min.js') }}"></script>
+<!-- MODIFIED/ADDED 5. Mar 2020: include aframe-extras.min.js to support animated models! -->
+    <script src="{{ url($theme_dir . '/js/aframe-extras/aframe-extras.min.js') }}"></script>
     <script src="{{ url($theme_dir . '/js/aframe-orbit-controls/aframe-orbit-controls.min.js') }}"></script>
     <script src="{{ url($theme_dir . '/js/superframe/aframe-look-at-component.min.js') }}"></script>
     <script src="{{ url($theme_dir . '/js/isvr-vr-mode.js') }}"></script>
